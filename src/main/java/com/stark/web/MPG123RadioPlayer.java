@@ -85,7 +85,7 @@ public class MPG123RadioPlayer implements IRadioPlayer
     {
         try
         {
-            ProcessBuilder processBuilder = new ProcessBuilder("amixer -q sset PCM ", percentage + "%");
+            ProcessBuilder processBuilder = new ProcessBuilder("/usr/bin/amixer", "set", "\'PCM\'", percentage + "%");
             processBuilder.redirectOutput(ProcessBuilder.Redirect.INHERIT);
             processBuilder.redirectError(ProcessBuilder.Redirect.INHERIT);
             (m_process = processBuilder.start()).waitFor();
