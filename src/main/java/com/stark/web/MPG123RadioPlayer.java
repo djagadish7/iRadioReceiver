@@ -9,7 +9,13 @@ public class MPG123RadioPlayer implements IRadioPlayer
     private Process m_process = null;
     private int MAX_VOL = 95;
     private int MIN_VOL = 10;
-    private int CUR_VOL = 50;
+    private int CUR_VOL = 90;
+
+    public void MPG123RadioPlayer()
+    {
+        ChangeVol(90);
+    }
+
 
     @Override
     public void Play(Station station)
@@ -88,7 +94,7 @@ public class MPG123RadioPlayer implements IRadioPlayer
             ProcessBuilder processBuilder = new ProcessBuilder("/usr/bin/amixer", "set", "\'PCM\'", percentage + "%");
             processBuilder.redirectOutput(ProcessBuilder.Redirect.INHERIT);
             processBuilder.redirectError(ProcessBuilder.Redirect.INHERIT);
-            (m_process = processBuilder.start()).waitFor();
+            (processBuilder.start()).waitFor();
         }
         catch (InterruptedException e)
         {
